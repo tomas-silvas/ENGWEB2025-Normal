@@ -1,0 +1,44 @@
+extends layout
+
+block content
+    .w3-card-4
+        header.w3-container.w3-teal
+            h1 
+                span Detalhes do País: #{pais}
+                a.w3-btn.w3-round.w3-grey(href="/") Voltar à Página Principal
+
+        .w3-container
+            h2 Participações
+            if participacoes && participacoes.length > 0
+                table.w3-table-all
+                    tr
+                        th ID da Edição
+                        th Ano
+                        th Música
+                        th Intérprete
+                        th Venceu
+                    each participacao in participacoes
+                        each musica in participacao.musicas
+                            tr
+                                td
+                                    a(href="/" + participacao.id)= participacao.id
+                                td= participacao.anoEdicao
+                                td= musica.titulo
+                                td= musica.interprete
+                                td= musica.venceu ? "Sim" : "Não"
+            else
+                p Nenhuma participação encontrada para este país.
+
+            h2 Organizações
+            if organizacoes && organizacoes.length > 0
+                table.w3-table-all
+                    tr
+                        th ID da Edição
+                        th Ano
+                    each organizacao in organizacoes
+                        tr
+                            td
+                                a(href="/" + organizacao.id)= organizacao.id
+                            td= organizacao.anoEdicao
+            else
+                p Nenhuma organização encontrada para este país.

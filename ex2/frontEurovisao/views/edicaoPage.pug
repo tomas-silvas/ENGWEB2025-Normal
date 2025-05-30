@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    .w3-card-4
+        header.w3-container.w3-teal
+            h1 
+                span Detalhes da Edição
+                a.w3-btn.w3-round.w3-grey(href="/") Voltar à Página Principal
+
+        .w3-container
+            if edicao
+                ul.w3-ul
+                    li
+                        strong ID: 
+                        span= edicao.id
+                    li
+                        strong Ano da Edição: 
+                        span= edicao.anoEdicao
+                    li
+                        strong País Organizador: 
+                        a(href="/paises/" + encodeURIComponent(edicao.organizacao))= edicao.organizacao
+                    li
+                        strong País Vencedor: 
+                        a(href="/paises/" + encodeURIComponent(edicao.vencedor))= edicao.vencedor
+                    li
+                        strong Músicas:
+                        table.w3-table-all
+                            tr
+                                th Título
+                                th Intérprete
+                                th País
+                            each musica in edicao.musicas
+                                tr
+                                    td= musica.titulo
+                                    td= musica.interprete
+                                    td= musica.pais
+            else
+                p Nenhuma informação encontrada para esta edição.
